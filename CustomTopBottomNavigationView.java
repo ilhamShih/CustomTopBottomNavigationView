@@ -11,16 +11,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
 public class CustomTopBottomNavigationView extends BottomNavigationView {
 
     private Path mPath;
     private Paint mPaint;
-    /** the CURVE_CIRCLE_RADIUS представляют радиус кнопки fab */
     public final int CURVE_CIRCLE_RADIUS = 256 / 3;
     // координаты первой кривой
-
-
     public Point mFirstCurveStartPoint = new Point();
     public Point mFirstCurveEndPoint = new Point();
     public Point mFirstCurveControlPoint2 = new Point();
@@ -51,18 +47,13 @@ public class CustomTopBottomNavigationView extends BottomNavigationView {
         init();
     }
 
-
-
     private void init() {
-          mPath = new Path();
+        mPath = new Path();
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-         mPaint.setColor(Color.WHITE);
+        mPaint.setColor(Color.WHITE);
         setBackgroundColor(Color.TRANSPARENT);
-
-
-         //Type VOID_TYPE = new Type(VOID, "PRIMITIVE_DESCRIPTORS", VOID, VOID + 1);
-    }
+}
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -90,19 +81,8 @@ public class CustomTopBottomNavigationView extends BottomNavigationView {
                 break;
         }
 
-
-        Log.d("mNavigationBarWidth",String.valueOf(mNavigationBarWidth));
-        // координаты (x, y) начальной точки перед кривой
-        //  mFirstCurveStartPoint.set((mNavigationBarWidth/2 ) -(CURVE_CIRCLE_RADIUS * 2) - (CURVE_CIRCLE_RADIUS / 3), 0);
-        Log.d("mFirstCurveStartPoint",String.valueOf(mFirstCurveStartPoint));
-        // координаты (x, y) конечной точки после кривой
-
-        Log.d("mFirstCurveEndPoint",String.valueOf(mFirstCurveEndPoint));
-        // то же самое для второй кривой
-        mSecondCurveStartPoint = mFirstCurveEndPoint;
-
-        Log.d("mSecondCurveEndPoint",String.valueOf(mSecondCurveEndPoint));
-// координаты (x, y) 1-й контрольной точки на кубической кривой
+        mSecondCurveStartPoint = mFirstCurveEndPoint; 
+        // координаты (x, y) 1-й контрольной точки на кубической кривой
         mFirstCurveControlPoint1.set(mFirstCurveStartPoint.x + CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4), mFirstCurveStartPoint.y);
         // координаты (x, y) 2-й контрольной точки на кубической кривой
         mFirstCurveControlPoint2.set(mFirstCurveEndPoint.x -(CURVE_CIRCLE_RADIUS * 2) + CURVE_CIRCLE_RADIUS, mFirstCurveEndPoint.y);
@@ -148,7 +128,6 @@ public class CustomTopBottomNavigationView extends BottomNavigationView {
         super.onDraw(canvas);
         canvas.drawPath(mPath, mPaint);
     }
-
 
 
 }
